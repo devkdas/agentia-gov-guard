@@ -3,3 +3,8 @@ dist
 *.log
 .DS_Store
 .agentia-gov-guard.local.json
+demo/
+test-results/
+vault/
+coverage/
+*.tgz
