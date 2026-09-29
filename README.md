@@ -52,6 +52,8 @@ unsafe promotion is discovered only after it fails.
 - **Self heal hint** — `--self-heal` prints the exact Operate agent
   diagnosis command for the failure instead of guessing. It prints, never
   executes, so there are no surprise costs.
+- **Shift-left hook** — `gov install-hook` writes a git commit-msg hook
+  that requires a story ID in every message plus a passing gate.
 - **Dual output** — human checklist by default, `--json` audit document for
   agents and pipelines.
 - **Zero private imports** — only shells out to public `agentia` commands.
@@ -146,6 +148,20 @@ Exit code `0` on pass or warn, `1` on blocked.
 Approving twice is idempotent and reprints the recheck command. Wrong
 story, wrong env, expired or unknown codes are rejected without consuming
 anything.
+
+### `agentia gov install-hook`
+
+| Flag | Description |
+|---|---|
+| `-e, --env <name>` | Environment the gate checks (default `UAT-SFP`) |
+| `--force` | Back up and replace an existing hook |
+| `--uninstall` | Remove a hook this command installed |
+| `-j, --json` | Machine readable output |
+
+Installs a git `commit-msg` hook, since the `pre-commit` stage cannot see
+the message. Every commit then needs a story ID like US-0000024 plus a
+passing gov check. Refuses to overwrite foreign hooks without `--force`
+and refuses to remove them at all.
 
 ## Configuration
 
