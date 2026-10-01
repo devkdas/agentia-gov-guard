@@ -173,6 +173,29 @@ and refuses to remove them at all.
 | `--credential-id/--org-id/--pipeline-id` | Scope IDs enabling blast radius lookups |
 | `-j, --json` | Machine readable JSON verdict |
 
+### `agentia gov risk-score`
+
+| Flag | Description |
+|---|---|
+| `-s, --story <id>` | User story name or ID (required) |
+| `-e, --env <name>` | Target environment assessed (default `UAT-SFP`) |
+| `--ai/--no-ai` | Release agent risk narrative (default on) |
+| `-j, --json` | Machine readable JSON output |
+
+### `agentia gov watch`
+
+| Flag | Description |
+|---|---|
+| `-s, --story <id>` | User story ID watched (required) |
+| `-e, --env <name>` | Target environment (default `UAT-SFP`) |
+| `--approve-code <code>` | Human supplied PROD approval code |
+| `--timeout-sec <n>` | Max seconds to watch (default 600, minimum 30) |
+| `--interval-sec <n>` | Seconds between gate polls (default 15, minimum 5) |
+| `-j, --json` | Machine readable JSON verdict |
+
+Polls the gate until pass or timeout. Approves only with a human
+supplied code, escalates with the last blocking detail otherwise.
+
 Quality gates a branch before promotion: story ID presence, profile
 noise through trim, risky grants through FLS scan, blast radius when
 scope IDs are given, and the policy gate itself. Companion checks
