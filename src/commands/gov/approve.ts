@@ -2,6 +2,7 @@ import {Args, Command, Flags} from '@oclif/core'
 import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs'
 import {homedir} from 'node:os'
 import {join} from 'node:path'
+import {appendAudit} from '../../audit.js'
 
 interface PendingApproval {
   code: string
@@ -97,6 +98,7 @@ export default class GovApprove extends Command {
     record.approved = true
     record.approvedAt = new Date().toISOString()
     savePending(live)
+    appendAudit({event: 'code-approved', code: record.code, story: record.story, env: record.env})
 
     const rerun = `agentia gov check --story ${record.story ?? '<id>'} --env ${record.env} --approve-code ${record.code}`
     if (asJson) {

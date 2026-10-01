@@ -4,6 +4,7 @@ import {existsSync, mkdirSync, readFileSync, writeFileSync} from 'node:fs'
 import {homedir} from 'node:os'
 import {join} from 'node:path'
 import {randomBytes} from 'node:crypto'
+import {appendAudit} from '../../audit.js'
 
 type CheckStatus = 'pass' | 'warn' | 'block'
 
@@ -206,6 +207,7 @@ export default class GovCheck extends Command {
           live.push(record)
           savePending(live)
           approval = record
+          appendAudit({event: 'code-issued', code: record.code, story, env})
           checks.push({
             name: 'env-gate',
             status: 'block',
@@ -243,6 +245,7 @@ export default class GovCheck extends Command {
         } else {
           savePending(live.filter((r) => r.code !== approveCode))
           approval = {...match}
+          appendAudit({event: 'code-consumed', code: approveCode as string, story, env})
           checks.push({
             name: 'env-gate',
             status: 'pass',

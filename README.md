@@ -201,6 +201,17 @@ and refuses to remove them at all.
 | `-e, --env <name>` | Target environment (default `UAT-SFP`) |
 | `-j, --json` | Machine readable JSON verdict |
 
+### `agentia gov audit-log`
+
+| Flag | Description |
+|---|---|
+| `-n, --limit <n>` | Newest events shown (default 50, maximum 500) |
+| `-j, --json` | Machine readable JSON events |
+
+Reads the append only approval ledger recording every code issue,
+approval and consumption with actor plus timestamp. No delete path
+exists by design.
+
 Chains policy, readiness and risk gates into one go or no-go verdict
 with exact fixes. Exits nonzero unless every evaluated gate passes.
 
