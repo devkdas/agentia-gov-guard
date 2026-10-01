@@ -201,6 +201,18 @@ and refuses to remove them at all.
 | `-e, --env <name>` | Target environment (default `UAT-SFP`) |
 | `-j, --json` | Machine readable JSON verdict |
 
+### `agentia gov simulate`
+
+| Flag | Description |
+|---|---|
+| `-s, --story <id>` | User story rehearsed (required) |
+| `-e, --env <name>` | Target environment rehearsed (default `UAT-SFP`) |
+| `-j, --json` | Machine readable JSON rehearsal |
+
+Rehearses policy gate, risk scan and readiness plus narrated merge and
+deploy stages with zero org writes. Removes fear by showing exactly what
+a real promotion would do before it happens.
+
 ### `agentia gov audit-log`
 
 | Flag | Description |
