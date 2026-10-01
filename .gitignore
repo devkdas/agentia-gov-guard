@@ -5,6 +5,6 @@ dist
 .agentia-gov-guard.local.json
 demo/
 test-results/
-vault/
+/vault/
 coverage/
 *.tgz
