@@ -193,6 +193,17 @@ and refuses to remove them at all.
 | `--interval-sec <n>` | Seconds between gate polls (default 15, minimum 5) |
 | `-j, --json` | Machine readable JSON verdict |
 
+### `agentia gov preflight`
+
+| Flag | Description |
+|---|---|
+| `-s, --story <id>` | User story ID checked (required) |
+| `-e, --env <name>` | Target environment (default `UAT-SFP`) |
+| `-j, --json` | Machine readable JSON verdict |
+
+Chains policy, readiness and risk gates into one go or no-go verdict
+with exact fixes. Exits nonzero unless every evaluated gate passes.
+
 Polls the gate until pass or timeout. Approves only with a human
 supplied code, escalates with the last blocking detail otherwise.
 
