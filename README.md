@@ -163,6 +163,22 @@ the message. Every commit then needs a story ID like US-0000024 plus a
 passing gov check. Refuses to overwrite foreign hooks without `--force`
 and refuses to remove them at all.
 
+### `agentia gov pr-check`
+
+| Flag | Description |
+|---|---|
+| `-s, --story <id>` | Story ID, defaults to US-ID parsed from branch name |
+| `-b, --base <ref>` | Base ref for the branch diff (default `origin/main`) |
+| `-e, --env <name>` | Environment for the policy gate (default `UAT-SFP`) |
+| `--credential-id/--org-id/--pipeline-id` | Scope IDs enabling blast radius lookups |
+| `-j, --json` | Machine readable JSON verdict |
+
+Quality gates a branch before promotion: story ID presence, profile
+noise through trim, risky grants through FLS scan, blast radius when
+scope IDs are given, and the policy gate itself. Companion checks
+degrade to skipped with guidance when their plugins are absent. Exits
+nonzero on any failing area with exact fixes.
+
 ## Configuration
 
 Pending approvals live in `~/.agentia-gov-guard/pending.json` (created on
