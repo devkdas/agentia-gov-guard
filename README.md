@@ -179,6 +179,21 @@ scope IDs are given, and the policy gate itself. Companion checks
 degrade to skipped with guidance when their plugins are absent. Exits
 nonzero on any failing area with exact fixes.
 
+### `agentia gov risk-score`
+
+| Flag | Description |
+|---|---|
+| `-s, --story <id>` | User story name or ID (required) |
+| `-e, --env <name>` | Target environment assessed (default `UAT-SFP`) |
+| `--ai/--no-ai` | Release agent risk narrative (default on) |
+| `-j, --json` | Machine readable JSON output |
+
+Predicts deployment risk from live signals: story maturity, pipeline
+blocks, target env weight, data commits and promotion history, each
+graded low, medium or high with reasons, plus an overall advisory
+estimate. Advisory only, never blocks. Pair with gov check for
+enforcement.
+
 ## Configuration
 
 Pending approvals live in `~/.agentia-gov-guard/pending.json` (created on
